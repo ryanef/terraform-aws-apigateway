@@ -1,0 +1,170 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "Example JSON with TF Deployment",
+
+    "contact": {
+      "email": "you@email.com"
+    },
+    "version": "1.0.11"
+  },
+  "paths": {
+    "/api/calendar": {
+      "get": {
+        "summary": "get economic calendar",
+        "operationId": "getCalendar",
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "httpMethod": "GET",
+          "uri": "http://www.google.com"
+        },
+        "responses": {
+          
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not loading"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "httpMethod": "POST"
+        },
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "httpMethod": "GET"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Calendar": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "format": "string",
+            "example": "Personal Consumptions Report"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-01-0108:00:00"
+          },
+          "impact": {
+            "type": "integer",
+            "format": "int32",
+            "example": 7
+          },
+          "previous": {},
+          "forecast": {}
+        },
+        "xml": {
+          "name": "order"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "string",
+            "example": "xzch78zxc32"
+          },
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "James"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "phone": {
+            "type": "string",
+            "example": "12345"
+          }
+        },
+        "xml": {
+          "name": "user"
+        }
+      }
+    }
+  }
+}
